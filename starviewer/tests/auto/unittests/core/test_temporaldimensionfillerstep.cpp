@@ -40,14 +40,32 @@ private:
 
 Q_DECLARE_METATYPE(QSharedPointer<TestingTemporalDimensionFillerStep>)
 
+namespace {
+
+struct StructLambdaReturnValue {
+    int returnValue;
+    int operator()(int) const { return returnValue; }
+};
+
+struct StructLambdaReturnParameterModPhases {
+    int numberOfPhases;
+    int operator()(int i) const { return i % numberOfPhases; }
+};
+
+struct StructLambdaReturnParameterPlusOne {
+    int operator()(int i) const { return i + 1; }
+};
+
+}
+
 void test_TemporalDimensionFillerStep::postProcessing_ShouldSetExpectedPhaseNumberWhenAllSlicesHaveTheSameNumberOfPhases_data()
 {
     QTest::addColumn< QSharedPointer<TestingTemporalDimensionFillerStep> >("step");
     QTest::addColumn<int>("numberOfPhases");
 
     // Emulate a lambda function with a struct with function operator
-    struct { int operator()(int) const { return 10; } } lambda1;
-    struct { int operator()(int) const { return 12; } } lambda2;
+    StructLambdaReturnValue lambda1 = { 10 };
+    StructLambdaReturnValue lambda2 = { 12 };
 
     QTest::newRow("one slice") << createStep(1, lambda1) << 10;
     QTest::newRow("10 slices") << createStep(10, lambda2) << 12;
@@ -58,10 +76,7 @@ void test_TemporalDimensionFillerStep::postProcessing_ShouldSetExpectedPhaseNumb
     QFETCH(int, numberOfPhases);
 
     // Emulate a lambda function with a struct with function operator
-    struct {
-        int numberOfPhases;
-        int operator()(int i) const { return i % numberOfPhases; }
-    } lambda = { numberOfPhases };
+    StructLambdaReturnParameterModPhases lambda = { numberOfPhases };
 
     testPostProcessing(lambda);
 }
@@ -71,7 +86,7 @@ void test_TemporalDimensionFillerStep::postProcessing_ShouldSetSinglePhaseWhenNo
     QTest::addColumn< QSharedPointer<TestingTemporalDimensionFillerStep> >("step");
 
     // Emulate a lambda function with a struct with function operator
-    struct { int operator()(int i) const { return i + 1; } } lambda;
+    StructLambdaReturnParameterPlusOne lambda;
 
     QTest::newRow("differents numbers of phases per slice") << createStep(10, lambda);
 }
@@ -79,7 +94,7 @@ void test_TemporalDimensionFillerStep::postProcessing_ShouldSetSinglePhaseWhenNo
 void test_TemporalDimensionFillerStep::postProcessing_ShouldSetSinglePhaseWhenNotAllSlicesHaveTheSameNumberOfPhases()
 {
     // Emulate a lambda function with a struct with function operator
-    struct { int operator()(int) const { return 0; } } lambda;
+    StructLambdaReturnValue lambda = { 0 };
 
     testPostProcessing(lambda);
 }
@@ -89,7 +104,7 @@ void test_TemporalDimensionFillerStep::postProcessing_ShouldSetSinglePhaseWhenTh
     QTest::addColumn< QSharedPointer<TestingTemporalDimensionFillerStep> >("step");
 
     // Emulate a lambda function with a struct with function operator
-    struct { int operator()(int) const { return 10; } } lambda;
+    StructLambdaReturnValue lambda = { 10 };
 
     QSharedPointer<TestingTemporalDimensionFillerStep> step = createStep(10, lambda);
     (*step->TemporalDimensionInternalInfo.begin())->value(0)->multipleAcquisitionNumber = true; // set multipleAcquisitionNumber to true for volume 0
@@ -99,7 +114,7 @@ void test_TemporalDimensionFillerStep::postProcessing_ShouldSetSinglePhaseWhenTh
 void test_TemporalDimensionFillerStep::postProcessing_ShouldSetSinglePhaseWhenThereAreMultipleAcquisitionNumbers()
 {
     // Emulate a lambda function with a struct with function operator
-    struct { int operator()(int) const { return 0; } } lambda;
+    StructLambdaReturnValue lambda = { 0 };
 
     testPostProcessing(lambda);
 }
@@ -109,7 +124,7 @@ void test_TemporalDimensionFillerStep::postProcessing_ShouldSetSinglePhaseWhenTh
     QTest::addColumn< QSharedPointer<TestingTemporalDimensionFillerStep> >("step");
 
     // Emulate a lambda function with a struct with function operator
-    struct { int operator()(int) const { return 10; } } lambda;
+    StructLambdaReturnValue lambda = { 10 };
 
     QSharedPointer<TestingTemporalDimensionFillerStep> step = createStep(10, lambda);
     delete (*step->TemporalDimensionInternalInfo.begin())->take(0); // esborrem el VolumeInfo del volum 0
@@ -119,7 +134,7 @@ void test_TemporalDimensionFillerStep::postProcessing_ShouldSetSinglePhaseWhenTh
 void test_TemporalDimensionFillerStep::postProcessing_ShouldSetSinglePhaseWhenTheVolumeIsNotProcessed()
 {
     // Emulate a lambda function with a struct with function operator
-    struct { int operator()(int) const { return 0; } } lambda;
+    StructLambdaReturnValue lambda = { 0 };
 
     testPostProcessing(lambda);
 }
