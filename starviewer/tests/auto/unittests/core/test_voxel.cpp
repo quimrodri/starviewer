@@ -3,6 +3,8 @@
 
 #include "mathtools.h"
 
+#include <limits>
+
 using namespace udg;
 
 class test_Voxel : public QObject {

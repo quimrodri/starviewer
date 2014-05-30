@@ -16,6 +16,8 @@
 
 #include "mathtools.h"
 
+#include <limits>
+
 #include <QString>
 
 namespace udg {

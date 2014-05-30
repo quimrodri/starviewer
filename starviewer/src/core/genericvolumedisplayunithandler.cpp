@@ -20,6 +20,8 @@
 #include "imagepipeline.h"
 #include "transferfunctionmodel.h"
 
+#include <limits>
+
 #include <vtkImageActor.h>
 
 namespace udg {
