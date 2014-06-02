@@ -5,6 +5,10 @@ unix {
     QMAKE_CXXFLAGS_DEBUG += -Wno-deprecated
 }
 
+unix:!macx {
+    LIBS += -lGLU
+}
+
 win32 {
     # Per tenir glew integrada al codi. Només necessari a windows.
     DEFINES += GLEW_STATIC

@@ -5,13 +5,13 @@
 
 DCMTKLIBDIR = $$(DCMTKLIBDIR)
 isEmpty(DCMTKLIBDIR){
-    unix:DCMTKLIBDIR = /usr/lib/dcmtk
+    unix:DCMTKLIBDIR = /usr/local/lib
     macx:DCMTKLIBDIR = /usr/local/dcmtk-3.6.1_20120515/lib
     win32:DCMTKLIBDIR = C:/dcmtk-3.6.1-20120515/lib
 }
 DCMTKINCLUDEDIR = $$(DCMTKINCLUDEDIR)
 isEmpty(DCMTKINCLUDEDIR){
-    unix:DCMTKINCLUDEDIR = /usr/include/dcmtk
+    unix:DCMTKINCLUDEDIR = /usr/local/include/dcmtk
     macx:DCMTKINCLUDEDIR = /usr/local/dcmtk-3.6.1_20120515/include/dcmtk
     win32:DCMTKINCLUDEDIR = C:/dcmtk-3.6.1-20120515/include/dcmtk
 }
@@ -21,13 +21,13 @@ isEmpty(DCMTKINCLUDEDIR){
 
 VTKLIBDIR = $$(VTKLIBDIR)
 isEmpty(VTKLIBDIR){
-    unix:VTKLIBDIR = /usr/lib
+    unix:VTKLIBDIR = /usr/local/lib/vtk-5.6
     macx:VTKLIBDIR = /usr/local/lib/vtk-5.6
     win32:VTKLIBDIR = C:/vtk/vtk5.6/lib/vtk-5.6
 }
 VTKINCLUDEDIR = $$(VTKINCLUDEDIR)
 isEmpty(VTKINCLUDEDIR){
-    unix:VTKINCLUDEDIR = /usr/include/vtk-5.6
+    unix:VTKINCLUDEDIR = /usr/local/include/vtk-5.6
     macx:VTKINCLUDEDIR = /usr/local/include/vtk-5.6
     win32:VTKINCLUDEDIR = C:/vtk/vtk5.6/include/vtk-5.6
 }
@@ -37,13 +37,13 @@ isEmpty(VTKINCLUDEDIR){
 
 ITKLIBDIR = $$(ITKLIBDIR)
 isEmpty(ITKLIBDIR){
-    unix:ITKLIBDIR = /usr/lib/InsightToolkit
+    unix:ITKLIBDIR = /usr/local/lib/InsightToolkit
     macx:ITKLIBDIR = /usr/local/lib/InsightToolkit
     win32:ITKLIBDIR = C:/InsightToolkit/lib/InsightToolkit
 }
 ITKINCLUDEDIR = $$(ITKINCLUDEDIR)
 isEmpty(ITKINCLUDEDIR){
-    unix:ITKINCLUDEDIR = /usr/include/InsightToolkit
+    unix:ITKINCLUDEDIR = /usr/local/include/InsightToolkit
     macx:ITKINCLUDEDIR = /usr/local/include/InsightToolkit
     win32:ITKINCLUDEDIR = C:/InsightToolkit/include/InsightToolkit
 }
@@ -52,13 +52,13 @@ isEmpty(ITKINCLUDEDIR){
 
 GDCMLIBDIR = $$(GDCMLIBDIR)
 isEmpty(GDCMLIBDIR){
-    unix:GDCMLIBDIR = /usr/lib/gdcm
+    unix:GDCMLIBDIR = /usr/local/lib
     macx:GDCMLIBDIR = /usr/local/lib/gdcm-2.0
     win32:GDCMLIBDIR = C:/gdcm/GDCM-2.0/lib
 }
 GDCMINCLUDEDIR = $$(GDCMINCLUDEDIR)
 isEmpty(GDCMINCLUDEDIR){
-    unix:GDCMINCLUDEDIR = /usr/include/gdcm
+    unix:GDCMINCLUDEDIR = /usr/local/include/gdcm-2.0
     macx:GDCMINCLUDEDIR = /usr/local/include/gdcm-2.0
     win32:GDCMINCLUDEDIR = C:/gdcm/GDCM-2.0/include/gdcm-2.0
 }
